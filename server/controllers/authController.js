@@ -30,7 +30,7 @@ const authController = {
       }
 
       // Créer un profil vide pour l'utilisateur
-      Profile.create({ user_id: userId, prenom }, (errProfile, profileId) => {
+      Profile.create({ user_id: userId, prenom }, (errProfile, profile) => {
         if (errProfile) {
           console.error('Erreur lors de la création du profil:', errProfile);
         }
@@ -44,20 +44,17 @@ const authController = {
             });
           }
 
-          // Récupérer le profil créé
-          Profile.getByUserId(userId, (errUserProfile, profile) => {
-            res.status(201).json({
-              success: true,
-              message: 'Utilisateur créé avec succès',
-              data: {
-                user: {
-                  id: user.id,
-                  email: user.email,
-                  prenom: user.prenom,
-                },
-                profile: profile || null,
+          res.status(201).json({
+            success: true,
+            message: 'Utilisateur créé avec succès',
+            data: {
+              user: {
+                id: user.id,
+                email: user.email,
+                prenom: user.prenom,
               },
-            });
+              profile: profile || null,
+            },
           });
         });
       });
@@ -101,7 +98,6 @@ const authController = {
           data: {
             user,
             profile: profile || null,
-            // On pourrait ajouter un token JWT ici plus tard
           },
         });
       });

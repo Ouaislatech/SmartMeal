@@ -1,4 +1,4 @@
-const { getDb } = require('../config/database');
+const { supabase } = require('../config/supabase');
 const bcrypt = require('bcrypt');
 
 class User {
@@ -20,15 +20,14 @@ class User {
    */
   static create(userData, callback) {
     const { email, password, prenom } = userData;
-    const db = getDb();
 
     // Vérifier si l'email existe déjà
-    db.get('SELECT id FROM users WHERE email = ?', [email], async (err, row) => {
+    this.getByEmail(email, async (err, existingUser) => {
       if (err) {
         return callback(err);
       }
 
-      if (row) {
+      if (existingUser) {
         return callback(new Error('Cet email est déjà utilisé'));
       }
 
@@ -36,95 +35,96 @@ class User {
         // Hacher le mot de passe
         const hashedPassword = await User.hashPassword(password);
 
-        // Insérer le nouvel utilisateur
-        db.run(
-          'INSERT INTO users (email, hashed_password, prenom) VALUES (?, ?, ?)',
-          [email, hashedPassword, prenom || null],
-          function (err) {
-            if (err) {
-              return callback(err);
-            }
+        // Insérer le nouvel utilisateur dans Supabase
+        const { data, error } = await supabase
+          .from('users')
+          .insert([{ email, hashed_password: hashedPassword, prenom: prenom || null }])
+          .select()
+          .single();
 
-            callback(null, this.lastID);
-          }
-        );
+        if (error) {
+          return callback(error);
+        }
+
+        callback(null, data.id);
       } catch (error) {
         callback(error);
       }
     });
   }
 
-  static getByEmail(email, callback) {
-    const sql = 'SELECT * FROM users WHERE email = ?';
-    const db = getDb();
+  static async getByEmail(email, callback) {
+    try {
+      const { data, error } = await supabase.from('users').select('*').eq('email', email).single();
 
-    db.get(sql, [email], (err, row) => {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      callback(null, row);
-    });
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 
-  static getById(id, callback) {
-    const sql = 'SELECT * FROM users WHERE id = ?';
-    const db = getDb();
+  static async getById(id, callback) {
+    try {
+      const { data, error } = await supabase.from('users').select('*').eq('id', id).single();
 
-    db.get(sql, [id], (err, row) => {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      callback(null, row);
-    });
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 
-  static authenticate(email, password, callback) {
-    console.log(`Tentative d'authentification pour l'email: ${email}`);
+  static async authenticate(email, password, callback) {
+    try {
+      // Récupérer l'utilisateur par email
+      const { data: user, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email)
+        .single();
 
-    this.getByEmail(email, async (err, user) => {
-      if (err) {
-        console.error("Erreur lors de la récupération de l'utilisateur:", err);
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
       if (!user) {
-        console.log(`Utilisateur non trouvé pour l'email: ${email}`);
-        return callback(null, false);
+        return callback(null, null);
       }
 
-      try {
-        console.log('Utilisateur trouvé, vérification du mot de passe...');
-        const isMatch = await this.comparePassword(password, user.hashed_password);
+      // Vérifier le mot de passe
+      const isPasswordValid = await User.comparePassword(password, user.hashed_password);
 
-        if (isMatch) {
-          console.log(`Authentification réussie pour l'utilisateur: ${user.id}`);
-          // Ne pas retourner le mot de passe haché
-          const { hashed_password, ...userWithoutPassword } = user;
-          return callback(null, userWithoutPassword);
-        } else {
-          console.log(`Mot de passe incorrect pour l'utilisateur: ${user.id}`);
-          return callback(null, false);
-        }
-      } catch (error) {
-        console.error('Erreur lors de la comparaison des mots de passe:', error);
-        return callback(error, null);
+      if (!isPasswordValid) {
+        return callback(null, null);
       }
-    });
+
+      // Ne pas renvoyer le mot de passe haché
+      const { hashed_password, ...userWithoutPassword } = user;
+      callback(null, userWithoutPassword);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 
-  static getAll(callback) {
-    const sql = 'SELECT id, email, created_at FROM users';
-    const db = getDb();
+  static async getAll(callback) {
+    try {
+      const { data, error } = await supabase.from('users').select('id, email, created_at');
 
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      callback(null, rows);
-    });
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 }
 

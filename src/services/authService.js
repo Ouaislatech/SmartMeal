@@ -1,4 +1,4 @@
-import { ApiService } from './api';
+import { supabase } from './supabaseClient';
 
 export const AuthService = {
   /**
@@ -10,44 +10,67 @@ export const AuthService = {
    */
   register: async (email, password, prenom) => {
     try {
-      const response = await fetch(`/api/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password, prenom }),
+      // Inscription avec Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email,
+        password,
       });
 
-      // Vérifier si le serveur a répondu
-      if (!response) {
-        throw new Error(
-          "Aucune réponse du serveur. Vérifiez que le serveur est en cours d'exécution."
-        );
+      if (authError) {
+        throw new Error(authError.message || "Erreur lors de l'inscription");
       }
 
-      let data;
-      try {
-        // Essayer de parser le JSON de façon sécurisée
-        const text = await response.text();
-        data = text ? JSON.parse(text) : {};
-      } catch (parseError) {
-        console.error('Erreur de parsing JSON:', parseError);
-        throw new Error(
-          'Réponse invalide du serveur. Vérifiez que le serveur est correctement configuré.'
-        );
+      if (!authData.user) {
+        throw new Error("Erreur lors de la création de l'utilisateur");
       }
 
-      if (!response.ok) {
-        throw new Error(data.message || "Erreur lors de l'inscription");
+      // Créer une entrée utilisateur dans la table users
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .insert([
+          {
+            id: authData.user.id,
+            email: email,
+            prenom: prenom,
+          },
+        ])
+        .select()
+        .single();
+
+      if (userError) {
+        throw new Error(userError.message || 'Erreur lors de la création du profil utilisateur');
+      }
+
+      // Créer un profil vide pour l'utilisateur
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .insert([
+          {
+            user_id: authData.user.id,
+            prenom: prenom,
+            completed: false,
+            freemium: true,
+          },
+        ])
+        .select()
+        .single();
+
+      if (profileError) {
+        console.error('Erreur lors de la création du profil:', profileError);
       }
 
       // Stocker l'utilisateur dans le localStorage pour garder la session
-      if (data.success) {
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-        localStorage.setItem('profile', JSON.stringify(data.data.profile));
-      }
+      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('profile', JSON.stringify(profileData));
 
-      return data;
+      return {
+        success: true,
+        message: 'Utilisateur créé avec succès',
+        data: {
+          user: userData,
+          profile: profileData,
+        },
+      };
     } catch (error) {
       console.error("Erreur d'inscription:", error);
       throw error;
@@ -62,53 +85,53 @@ export const AuthService = {
    */
   login: async (email, password) => {
     try {
-      console.log(`Tentative de connexion pour l'email: ${email}`);
-
-      const response = await fetch(`/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      // Connexion avec Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
-      // Vérifier si le serveur a répondu
-      if (!response) {
-        console.error('Aucune réponse du serveur');
+      if (authError) {
+        throw new Error(authError.message || 'Identifiants incorrects');
+      }
+
+      // Récupérer les données utilisateur
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', authData.user.id)
+        .single();
+
+      if (userError) {
         throw new Error(
-          "Aucune réponse du serveur. Vérifiez que le serveur est en cours d'exécution."
+          userError.message || 'Erreur lors de la récupération des données utilisateur'
         );
       }
 
-      console.log('Réponse du serveur reçue:', response.status, response.statusText);
+      // Récupérer le profil
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', authData.user.id)
+        .single();
 
-      let data;
-      try {
-        // Essayer de parser le JSON de façon sécurisée
-        const text = await response.text();
-        console.log('Réponse brute:', text);
-        data = text ? JSON.parse(text) : {};
-      } catch (parseError) {
-        console.error('Erreur de parsing JSON:', parseError);
-        throw new Error(
-          'Réponse invalide du serveur. Vérifiez que le serveur est correctement configuré.'
-        );
+      if (profileError && profileError.code !== 'PGRST116') {
+        // Ignorer l'erreur si le profil n'existe pas
+        console.error('Erreur lors de la récupération du profil:', profileError);
       }
-
-      if (!response.ok) {
-        console.error('Erreur de connexion:', data);
-        throw new Error(data.message || 'Erreur lors de la connexion');
-      }
-
-      console.log('Connexion réussie:', data);
 
       // Stocker l'utilisateur dans le localStorage pour garder la session
-      if (data.success) {
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-        localStorage.setItem('profile', JSON.stringify(data.data.profile));
-      }
+      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('profile', JSON.stringify(profileData || null));
 
-      return data;
+      return {
+        success: true,
+        message: 'Connexion réussie',
+        data: {
+          user: userData,
+          profile: profileData || null,
+        },
+      };
     } catch (error) {
       console.error('Erreur de connexion:', error);
       throw error;
@@ -118,18 +141,39 @@ export const AuthService = {
   /**
    * Déconnexion de l'utilisateur
    */
-  logout: () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('profile');
-    window.location.href = '/login';
+  logout: async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error('Erreur lors de la déconnexion:', error);
+      }
+
+      localStorage.removeItem('user');
+      localStorage.removeItem('profile');
+      window.location.href = '/login';
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion:', error);
+    }
   },
 
   /**
    * Vérifier si l'utilisateur est connecté
    * @returns {boolean} Vrai si l'utilisateur est connecté
    */
-  isAuthenticated: () => {
-    return localStorage.getItem('user') !== null;
+  isAuthenticated: async () => {
+    try {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error || !data.session) {
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Erreur lors de la vérification de l'authentification:", error);
+      return false;
+    }
   },
 
   /**

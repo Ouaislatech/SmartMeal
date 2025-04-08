@@ -1,7 +1,7 @@
-const db = require('../config/database');
+const { supabase } = require('../config/supabase');
 
 class Profile {
-  static create(profileData, callback) {
+  static async create(profileData, callback) {
     const {
       user_id,
       prenom = null,
@@ -19,141 +19,115 @@ class Profile {
       preferences = null,
     } = profileData;
 
-    const sql = `
-      INSERT INTO profiles (
-        user_id, prenom, objectif_sante, regime_particulier, autres_regimes, 
-        sexe, age, taille, poids, budget_alimentaire, freemium, completed,
-        allergies, preferences
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .insert([
+          {
+            user_id,
+            prenom,
+            objectif_sante,
+            regime_particulier,
+            autres_regimes,
+            sexe,
+            age,
+            taille,
+            poids,
+            budget_alimentaire,
+            freemium,
+            completed,
+            allergies,
+            preferences,
+          },
+        ])
+        .select()
+        .single();
 
-    db.run(
-      sql,
-      [
-        user_id,
-        prenom,
-        objectif_sante,
-        regime_particulier,
-        autres_regimes,
-        sexe,
-        age,
-        taille,
-        poids,
-        budget_alimentaire,
-        freemium ? 1 : 0,
-        completed ? 1 : 0,
-        allergies,
-        preferences,
-      ],
-      function (err) {
-        if (err) {
-          return callback(err, null);
-        }
-
-        callback(null, {
-          id: this.lastID,
-          user_id,
-          prenom,
-          objectif_sante,
-          regime_particulier,
-          autres_regimes,
-          sexe,
-          age,
-          taille,
-          poids,
-          budget_alimentaire,
-          freemium,
-          completed,
-          allergies,
-          preferences,
-        });
-      }
-    );
-  }
-
-  static getByUserId(userId, callback) {
-    const sql = 'SELECT * FROM profiles WHERE user_id = ?';
-
-    console.log(db);
-
-    db.get(sql, [userId], (err, row) => {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      callback(null, row);
-    });
-  }
-
-  static update(profileId, profileData, callback) {
-    // Construire dynamiquement la requête SQL d'update
-    let updates = [];
-    let values = [];
-
-    for (const [key, value] of Object.entries(profileData)) {
-      if (key !== 'id' && key !== 'user_id' && key !== 'created_at') {
-        updates.push(`${key} = ?`);
-        values.push(value);
-      }
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
     }
+  }
 
-    // Ajouter updated_at
-    updates.push('updated_at = CURRENT_TIMESTAMP');
+  static async getByUserId(userId, callback) {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
 
-    // Ajouter l'ID à la fin des valeurs pour la clause WHERE
-    values.push(profileId);
-
-    const sql = `
-      UPDATE profiles
-      SET ${updates.join(', ')}
-      WHERE id = ?
-    `;
-
-    db.run(sql, values, function (err) {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      if (this.changes === 0) {
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
+  }
+
+  static async update(profileId, profileData, callback) {
+    try {
+      // Supprimer les champs qui ne doivent pas être mis à jour
+      const { id, user_id, created_at, ...updateData } = profileData;
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .update(updateData)
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) {
+        return callback(error, null);
+      }
+
+      if (!data) {
         return callback(new Error('Profil non trouvé'), null);
       }
 
-      // Récupérer le profil mis à jour
-      db.get('SELECT * FROM profiles WHERE id = ?', [profileId], (err, row) => {
-        if (err) {
-          return callback(err, null);
-        }
-
-        callback(null, row);
-      });
-    });
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 
-  static delete(profileId, callback) {
-    const sql = 'DELETE FROM profiles WHERE id = ?';
+  static async delete(profileId, callback) {
+    try {
+      const { error } = await supabase.from('profiles').delete().eq('id', profileId);
 
-    db.run(sql, [profileId], function (err) {
-      if (err) {
-        return callback(err, null);
+      if (error) {
+        return callback(error, null);
       }
 
-      callback(null, { deleted: this.changes > 0 });
-    });
+      callback(null, { deleted: true });
+    } catch (err) {
+      callback(err, null);
+    }
   }
 
-  static updatePhoto(profileId, photoUrl, callback) {
-    db.run(
-      'UPDATE profiles SET photo_profil = ? WHERE id = ?',
-      [photoUrl, profileId],
-      function (err) {
-        if (err) {
-          return callback(err);
-        }
+  static async updatePhoto(profileId, photoUrl, callback) {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({ photo_profil: photoUrl })
+        .eq('id', profileId)
+        .select()
+        .single();
 
-        // Récupérer le profil mis à jour
-        Profile.getById(profileId, callback);
+      if (error) {
+        return callback(error, null);
       }
-    );
+
+      callback(null, data);
+    } catch (err) {
+      callback(err, null);
+    }
   }
 }
 

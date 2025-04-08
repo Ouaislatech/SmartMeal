@@ -1,7 +1,5 @@
-import axios from 'axios';
+import { supabase } from './supabaseClient';
 import { AuthService } from './authService';
-
-const API_URL = '/api';
 
 export const ProfileService = {
   /**
@@ -11,8 +9,14 @@ export const ProfileService = {
    */
   getProfile: async (userId) => {
     try {
-      const response = await axios.get(`${API_URL}/profiles/user/${userId}`);
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la récupération du profil:', error);
       throw error;
@@ -27,8 +31,15 @@ export const ProfileService = {
    */
   updateProfile: async (profileId, profileData) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}`, profileData);
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update(profileData)
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour du profil:', error);
       throw error;
@@ -43,10 +54,15 @@ export const ProfileService = {
    */
   updateObjectifsSante: async (profileId, objectifSante) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/objectifs-sante`, {
-        objectif_sante: objectifSante,
-      });
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({ objectif_sante: objectifSante })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour des objectifs santé:', error);
       throw error;
@@ -61,11 +77,18 @@ export const ProfileService = {
    */
   updateRegimeParticulier: async (profileId, regimeData) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/regime-particulier`, {
-        regime_particulier: regimeData.regime_particulier,
-        autres_regimes: regimeData.autres_regimes,
-      });
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          regime_particulier: regimeData.regime_particulier,
+          autres_regimes: regimeData.autres_regimes,
+        })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour du régime particulier:', error);
       throw error;
@@ -80,13 +103,20 @@ export const ProfileService = {
    */
   updateDonneesPhysiques: async (profileId, donneesPhysiques) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/donnees-physiques`, {
-        sexe: donneesPhysiques.sexe,
-        age: donneesPhysiques.age,
-        taille: donneesPhysiques.taille,
-        poids: donneesPhysiques.poids,
-      });
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          sexe: donneesPhysiques.sexe,
+          age: donneesPhysiques.age,
+          taille: donneesPhysiques.taille,
+          poids: donneesPhysiques.poids,
+        })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour des données physiques:', error);
       throw error;
@@ -101,10 +131,17 @@ export const ProfileService = {
    */
   updateBudget: async (profileId, budgetAlimentaire) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/budget`, {
-        budget_alimentaire: budgetAlimentaire,
-      });
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          budget_alimentaire: budgetAlimentaire,
+        })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour du budget:', error);
       throw error;
@@ -119,10 +156,15 @@ export const ProfileService = {
    */
   updateFreemium: async (profileId, freemium) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/freemium`, {
-        freemium,
-      });
-      return response.data;
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({ freemium })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour du statut freemium:', error);
       throw error;
@@ -137,18 +179,25 @@ export const ProfileService = {
    */
   updatePhoto: async (profileId, photoUrl) => {
     try {
-      const response = await axios.put(`${API_URL}/profiles/${profileId}/photo`, {
-        photo_profil: photoUrl,
-      });
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          photo_profil: photoUrl,
+        })
+        .eq('id', profileId)
+        .select()
+        .single();
+
+      if (error) throw error;
 
       // Mettre à jour le profil dans le localStorage
       const user = AuthService.getUser();
       if (user) {
-        user.profile = response.data;
+        user.profile = data;
         AuthService.setUser(user);
       }
 
-      return response.data;
+      return data;
     } catch (error) {
       console.error('Erreur lors de la mise à jour de la photo:', error);
       throw error;
