@@ -15,6 +15,9 @@ if (!fs.existsSync(dbDir)) {
 
 // Lancer le script "dev:all" de package.json
 console.log("Démarrage de l'application SmartMeal...");
+console.log('Le frontend sera disponible sur http://localhost:3000');
+console.log("L'API sera disponible sur http://localhost:5001");
+
 const startProcess = spawn('npm', ['run', 'dev:all'], {
   stdio: 'inherit',
   shell: true,

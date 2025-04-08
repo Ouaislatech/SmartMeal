@@ -1,0 +1,290 @@
+.profile-review-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.profile-review-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #7f8c8d;
+}
+
+.profile-review-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.profile-review-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.profile-review-header p {
+  color: #7f8c8d;
+}
+
+.profile-review-error {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.profile-review-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.profile-name-section {
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.profile-name-section h2 {
+  font-size: 1.75rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.prenom-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.prenom-input:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.user-email {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.profile-section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.section-header h3 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.edit-button {
+  background-color: transparent;
+  color: #3498db;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: #7f8c8d;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #f5f7fa;
+}
+
+.save-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.save-button:hover {
+  background-color: #27ae60;
+}
+
+.save-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.section-content {
+  color: #34495e;
+}
+
+.section-content p {
+  margin: 0.5rem 0;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1.25rem;
+}
+
+.data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.data-label {
+  font-size: 0.75rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.section-edit {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #dfe4ea;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.profile-review-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #7f8c8d;
+  border: 1px solid #bdc3c7;
+  border-radius: 8px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background-color: #f5f7fa;
+}
+
+.complete-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.complete-button:hover {
+  background-color: #27ae60;
+}
+
+.complete-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .profile-review-container {
+    padding: 1.5rem;
+  }
+
+  .profile-review-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .back-button,
+  .complete-button {
+    width: 100%;
+  }
+}

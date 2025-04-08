@@ -41,7 +41,84 @@
   color: #888;
 }
 
+/* Style global de l'application */
 .app-container {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
+  color: #333;
   background-color: #f5f7fa;
+}
+
+/* Suppression des marges par défaut */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles pour les boutons principaux */
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.button-primary {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #27ae60;
+}
+
+.button-secondary {
+  background-color: #f8f9fa;
+  color: #34495e;
+  border: 1px solid #dfe4ea;
+}
+
+.button-secondary:hover {
+  background-color: #eef0f2;
+}
+
+/* Styles des liens */
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Classes utilitaires */
+.text-center {
+  text-align: center;
+}
+
+.text-error {
+  color: #e74c3c;
+}
+
+.text-success {
+  color: #2ecc71;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
 }

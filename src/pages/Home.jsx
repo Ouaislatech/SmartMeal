@@ -1,54 +1,9 @@
-import { useState, useEffect } from "react";
-import OnboardingForm from "../components/OnboardingForm";
-import { ApiService } from "../services/api";
-import "./Home.css";
+import { Link } from 'react-router-dom';
+import { AuthService } from '../services/authService';
+import './Home.css';
 
 function Home() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [apiStatus, setApiStatus] = useState({ connected: false, status: "" });
-
-  // Vérifier l'état de l'API au chargement
-  useEffect(() => {
-    const checkApiStatus = async () => {
-      try {
-        const status = await ApiService.checkStatus();
-        setApiStatus({ connected: true, status: status.status });
-      } catch (error) {
-        setApiStatus({ connected: false, status: "Déconnecté" });
-        setError(
-          "Impossible de se connecter au serveur. Veuillez vérifier que le backend est démarré."
-        );
-      }
-    };
-
-    checkApiStatus();
-  }, []);
-
-  // Charger la liste des utilisateurs
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (!apiStatus.connected) return;
-
-      try {
-        setLoading(true);
-        const response = await ApiService.getAllUsers();
-        setUsers(response.data || []);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setError("Erreur lors du chargement des profils utilisateurs");
-      }
-    };
-
-    fetchUsers();
-  }, [apiStatus.connected]);
-
-  // Gérer la création d'un nouvel utilisateur
-  const handleUserCreated = (newUser) => {
-    setUsers((prevUsers) => [...prevUsers, newUser]);
-  };
+  const isAuthenticated = AuthService.isAuthenticated();
 
   return (
     <div className="home-container">
@@ -56,63 +11,61 @@ function Home() {
         <h1>SmartMeal</h1>
         <p>Votre assistant de nutrition personnalisé</p>
 
-        <div
-          className={`api-status ${
-            apiStatus.connected ? "connected" : "disconnected"
-          }`}
-        >
-          API: {apiStatus.status || "Vérification..."}
+        <div className="auth-buttons">
+          {isAuthenticated ? (
+            <Link to="/dashboard" className="auth-button dashboard-button">
+              Accéder à mon tableau de bord
+            </Link>
+          ) : (
+            <>
+              <Link to="/login" className="auth-button login-button">
+                Se connecter
+              </Link>
+              <Link to="/register" className="auth-button register-button">
+                S'inscrire
+              </Link>
+            </>
+          )}
         </div>
       </header>
 
       <main className="main-content">
-        <section className="onboarding-section">
-          <OnboardingForm onUserCreated={handleUserCreated} />
-        </section>
+        <section className="hero-section">
+          <div className="hero-content">
+            <h2>Prenez le contrôle de votre alimentation</h2>
+            <p className="hero-description">
+              SmartMeal vous aide à planifier vos repas en fonction de vos objectifs, préférences et
+              contraintes alimentaires.
+            </p>
 
-        {apiStatus.connected && (
-          <section className="users-section">
-            <h2>Profils enregistrés</h2>
-
-            {error && <p className="error-text">{error}</p>}
-
-            {loading ? (
-              <p>Chargement des profils...</p>
-            ) : (
-              <div className="users-list">
-                {users.length === 0 ? (
-                  <p>Aucun profil utilisateur enregistré</p>
-                ) : (
-                  users.map((user) => (
-                    <div key={user.id} className="user-card">
-                      <h3>{user.prenom}</h3>
-                      <p>
-                        <strong>Objectif:</strong> {user.objectif}
-                      </p>
-                      {user.allergies && (
-                        <p>
-                          <strong>Allergies:</strong> {user.allergies}
-                        </p>
-                      )}
-                      {user.preferences && (
-                        <p>
-                          <strong>Préférences:</strong> {user.preferences}
-                        </p>
-                      )}
-                    </div>
-                  ))
-                )}
+            <div className="hero-features">
+              <div className="feature">
+                <h3>Plans personnalisés</h3>
+                <p>Des repas adaptés à vos besoins nutritionnels spécifiques</p>
               </div>
+
+              <div className="feature">
+                <h3>Organisation facile</h3>
+                <p>Générez automatiquement votre liste de courses hebdomadaire</p>
+              </div>
+
+              <div className="feature">
+                <h3>100% local</h3>
+                <p>Toutes vos données sont stockées sur votre appareil uniquement</p>
+              </div>
+            </div>
+
+            {!isAuthenticated && (
+              <Link to="/register" className="cta-button">
+                Créer un compte gratuit
+              </Link>
             )}
-          </section>
-        )}
+          </div>
+        </section>
       </main>
 
       <footer className="footer">
-        <p>
-          &copy; {new Date().getFullYear()} SmartMeal - Application développée
-          localement
-        </p>
+        <p>&copy; {new Date().getFullYear()} SmartMeal - Application développée localement</p>
       </footer>
     </div>
   );
