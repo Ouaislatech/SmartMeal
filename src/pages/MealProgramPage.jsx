@@ -18,6 +18,16 @@ const MealProgramPage = () => {
     dinner: 'Dîner',
   };
 
+  const dayNames = {
+    monday: 'Lundi',
+    tuesday: 'Mardi',
+    wednesday: 'Mercredi',
+    thursday: 'Jeudi',
+    friday: 'Vendredi',
+    saturday: 'Samedi',
+    sunday: 'Dimanche',
+  };
+
   const mealImages = {
     breakfast: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg',
     lunch: 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg',
@@ -51,12 +61,12 @@ const MealProgramPage = () => {
         Retour aux programmes
       </Link>
 
-      <h1 className="text-4xl font-bold text-center mb-12">Programme Semaine {weekNumber || 1}</h1>
+      <h1 className="page-title">Programme Semaine {weekNumber || 1}</h1>
 
       <div className="meal-program-container">
         {days.map((day) => (
           <div key={day} className="day-card">
-            <h2 className="day-title capitalize">{day}</h2>
+            <h2 className="day-title">{dayNames[day]}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {meals.map((meal) => {
