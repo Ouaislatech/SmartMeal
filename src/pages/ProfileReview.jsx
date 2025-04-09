@@ -126,7 +126,7 @@ function ProfileReview() {
     try {
       // Marquer le profil comme complet
       await ProfileService.updateFreemium(profile.id, profile.freemium === 1);
-      navigate('/dashboard');
+      navigate('/programmes');
     } catch (error) {
       setError(error.message || 'Erreur lors de la finalisation du profil');
     } finally {

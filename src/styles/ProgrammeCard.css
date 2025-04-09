@@ -1,0 +1,82 @@
+.programme-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.programme-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+  z-index: 1;
+}
+
+.programme-card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.programme-card-image img {
+  transition: transform 0.3s ease;
+}
+
+.programme-card:hover .programme-card-image img {
+  transform: scale(1.05);
+}
+
+.programme-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.programme-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.programme-card-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.programme-card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.programme-card-button {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.programme-card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .programme-card {
+    flex-direction: column;
+  }
+
+  .programme-card-image {
+    height: 200px;
+  }
+
+  .programme-card-content {
+    padding: 1.5rem;
+  }
+}

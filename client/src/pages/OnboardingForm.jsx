@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../config/supabase';
+import { supabase } from '../../../src/config/supabase';
 import {
   Container,
   Paper,
@@ -82,6 +82,28 @@ const OnboardingForm = () => {
 
   const handleBack = () => {
     setActiveStep((prevStep) => prevStep - 1);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) throw new Error('Utilisateur non connecté');
+
+      const { error } = await supabase.from('profiles').upsert({
+        user_id: user.id,
+        ...formData,
+        updated_at: new Date().toISOString(),
+      });
+
+      if (error) throw error;
+
+      // Redirection vers la page des programmes
+      navigate('/programmes', { replace: true });
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   const renderStepContent = (step) => {
@@ -265,16 +287,20 @@ const OnboardingForm = () => {
 
         {renderStepContent(activeStep)}
 
-        {activeStep < steps.length - 1 && (
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
-            <Button disabled={activeStep === 0} onClick={handleBack}>
-              Retour
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button disabled={activeStep === 0} onClick={handleBack} variant="outlined">
+            Retour
+          </Button>
+          {activeStep === steps.length - 1 ? (
+            <Button variant="contained" color="primary" onClick={handleSubmit}>
+              Finaliser et accéder à mes programmes
             </Button>
-            <Button variant="contained" onClick={handleNext}>
+          ) : (
+            <Button variant="contained" color="primary" onClick={handleNext}>
               Suivant
             </Button>
-          </Box>
-        )}
+          )}
+        </Box>
       </Paper>
     </Container>
   );

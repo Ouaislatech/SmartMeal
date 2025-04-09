@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../config/supabase';
+import { supabase } from '../../../src/config/supabase';
 import {
   Box,
   Container,
@@ -197,6 +197,19 @@ const ProfileRecap = () => {
                 color={profile.freemium ? 'default' : 'primary'}
                 variant="outlined"
               />
+            </Box>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Box display="flex" justifyContent="center" mt={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={() => navigate('/programmes')}
+              >
+                Accéder à mes programmes
+              </Button>
             </Box>
           </Grid>
         </Grid>

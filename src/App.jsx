@@ -3,6 +3,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import OnboardingContainer from './components/onboarding/OnboardingContainer';
 import Dashboard from './pages/Dashboard';
+import Programmes from './pages/Programmes';
 import Home from './pages/Home';
 import ProfileReview from './pages/ProfileReview';
 import { AuthService } from './services/authService';
@@ -34,6 +35,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/programmes"
+          element={
+            <ProtectedRoute>
+              <Programmes />
             </ProtectedRoute>
           }
         />

@@ -7,6 +7,7 @@ const { initializeDatabase } = require('./config/database');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const mealRoutes = require('./routes/generateMeals');
 
 // Initialisation de l'application Express
 const app = express();
@@ -28,6 +29,7 @@ initializeDatabase()
     app.use('/api/users', userRoutes);
     app.use('/api/auth', authRoutes);
     app.use('/api/profiles', profileRoutes);
+    app.use('/api/meals', mealRoutes);
 
     // Démarrer le serveur
     app.listen(PORT, () => {

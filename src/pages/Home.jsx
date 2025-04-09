@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AuthService } from '../services/authService';
+import { LogoutButton } from '../components/LogoutButton';
 import './Home.css';
 
 function Home() {
@@ -8,14 +9,24 @@ function Home() {
   return (
     <div className="home-container">
       <header className="header">
-        <h1>SmartMeal</h1>
-        <p>Votre assistant de nutrition personnalisé</p>
+        <div className="flex justify-between items-center w-full">
+          <div>
+            <h1>SmartMeal</h1>
+            <p>Votre assistant de nutrition personnalisé</p>
+          </div>
+          {isAuthenticated && <LogoutButton />}
+        </div>
 
         <div className="auth-buttons">
           {isAuthenticated ? (
-            <Link to="/dashboard" className="auth-button dashboard-button">
-              Accéder à mon tableau de bord
-            </Link>
+            <>
+              <Link to="/programmes" className="auth-button programmes-button mb-4">
+                Voir mes programmes
+              </Link>
+              <Link to="/dashboard" className="auth-button dashboard-button">
+                Accéder à mon tableau de bord
+              </Link>
+            </>
           ) : (
             <>
               <Link to="/login" className="auth-button login-button">
