@@ -1,69 +1,98 @@
 .programme-card {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.programme-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
-  z-index: 1;
-}
-
-.programme-card-image {
-  position: relative;
+  display: flex;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-}
-
-.programme-card-image img {
+  background-color: white;
+  max-width: 1000px;
+  margin: 2rem auto;
   transition: transform 0.3s ease;
 }
 
-.programme-card:hover .programme-card-image img {
-  transform: scale(1.05);
+.programme-card:hover {
+  transform: scale(1.01);
 }
 
-.programme-card-content {
-  position: relative;
-  z-index: 2;
+.programme-card img {
+  width: 100%;
+  max-width: 50%;
+  object-fit: cover;
+  content: url('/images/programmes/marche-fruits-legumes.jpg');
 }
 
-.programme-card-title {
+.programme-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.programme-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2f2f2f;
   font-family: 'Poppins', sans-serif;
+}
+
+.programme-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.programme-button {
+  background-color: #0a7c59;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
   font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(10, 124, 89, 0.25);
+  transition: background-color 0.3s ease;
 }
 
-.programme-card-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+.programme-button:hover {
+  background-color: #065f45;
 }
 
-.programme-card-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+/* Styles pour le bouton retour */
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #0a7c59;
+  border: 2px solid #0a7c59;
   padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.programme-card-button {
+  cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.programme-card-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+.back-button:hover {
+  background-color: #0a7c59;
+  color: white;
+}
+
+.back-button svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover svg {
+  transform: translateX(-4px);
 }
 
 /* Responsive styles */
@@ -72,11 +101,16 @@
     flex-direction: column;
   }
 
-  .programme-card-image {
+  .programme-card img {
     height: 200px;
   }
 
-  .programme-card-content {
+  .programme-content {
     padding: 1.5rem;
+  }
+
+  .back-button {
+    top: 1rem;
+    left: 1rem;
   }
 }

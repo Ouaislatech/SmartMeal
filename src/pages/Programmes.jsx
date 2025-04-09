@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProgrammeCard from '../components/ProgrammeCard';
+import '../styles/ProgrammeCard.css';
 
 const Programmes = () => {
+  const navigate = useNavigate();
   const programmes = [
     {
       title: 'Programme Semaine 1',
@@ -15,8 +18,18 @@ const Programmes = () => {
     },
   ];
 
+  const handleBackClick = () => {
+    navigate('/home');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <button className="back-button" onClick={handleBackClick}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Retour à l'accueil
+      </button>
       <h1 className="text-4xl font-bold text-center mb-12">Mes Programmes de Repas</h1>
 
       <div className="max-w-7xl mx-auto">

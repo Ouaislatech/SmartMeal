@@ -4,6 +4,7 @@ import Register from './components/auth/Register';
 import OnboardingContainer from './components/onboarding/OnboardingContainer';
 import Dashboard from './pages/Dashboard';
 import Programmes from './pages/Programmes';
+import ProgrammeCards from './pages/ProgrammeCards';
 import Home from './pages/Home';
 import ProfileReview from './pages/ProfileReview';
 import { AuthService } from './services/authService';
@@ -44,6 +45,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Programmes />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/programme-cards"
+          element={
+            <ProtectedRoute>
+              <ProgrammeCards />
             </ProtectedRoute>
           }
         />
