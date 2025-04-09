@@ -113,6 +113,269 @@
             "Terminer avec le parmesan"
           ]
         }
+      },
+      "wednesday": {
+        "breakfast": {
+          "name": "Porridge aux fruits rouges",
+          "ingredients": [
+            "50g de flocons d'avoine",
+            "200ml de lait d'amande",
+            "100g de fruits rouges",
+            "1 c. à soupe de miel",
+            "1 c. à soupe de graines de lin"
+          ],
+          "preparationTime": "10 minutes",
+          "steps": [
+            "Faire chauffer le lait",
+            "Ajouter les flocons d'avoine",
+            "Laisser cuire 5 minutes",
+            "Ajouter les fruits et les graines"
+          ]
+        },
+        "lunch": {
+          "name": "Poulet rôti aux légumes",
+          "ingredients": [
+            "1 blanc de poulet",
+            "200g de patates douces",
+            "200g de courgettes",
+            "1 oignon",
+            "Herbes de Provence",
+            "Huile d'olive",
+            "Sel et poivre"
+          ],
+          "preparationTime": "35 minutes",
+          "steps": [
+            "Préchauffer le four à 200°C",
+            "Couper les légumes en morceaux",
+            "Assaisonner le poulet et les légumes",
+            "Enfourner pendant 30 minutes"
+          ]
+        },
+        "dinner": {
+          "name": "Soupe de lentilles corail",
+          "ingredients": [
+            "150g de lentilles corail",
+            "1 carotte",
+            "1 oignon",
+            "1 gousse d'ail",
+            "1 c. à café de curcuma",
+            "1 litre de bouillon de légumes",
+            "Coriandre fraîche"
+          ],
+          "preparationTime": "25 minutes",
+          "steps": [
+            "Faire revenir l'oignon et l'ail",
+            "Ajouter les lentilles et les épices",
+            "Verser le bouillon",
+            "Laisser cuire 20 minutes"
+          ]
+        }
+      },
+      "thursday": {
+        "breakfast": {
+          "name": "Tartine avocat-œuf",
+          "ingredients": [
+            "2 tranches de pain complet",
+            "1/2 avocat",
+            "2 œufs",
+            "Graines de sésame",
+            "Sel et poivre"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Faire cuire les œufs",
+            "Écraser l'avocat",
+            "Tartiner le pain",
+            "Ajouter les œufs et les graines"
+          ]
+        },
+        "lunch": {
+          "name": "Salade de pâtes complètes",
+          "ingredients": [
+            "100g de pâtes complètes",
+            "100g de thon",
+            "1/2 concombre",
+            "1 tomate",
+            "Olives noires",
+            "Basilic",
+            "Huile d'olive"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire les pâtes",
+            "Couper les légumes",
+            "Mélanger tous les ingrédients",
+            "Assaisonner"
+          ]
+        },
+        "dinner": {
+          "name": "Poisson blanc aux légumes",
+          "ingredients": [
+            "2 filets de cabillaud",
+            "200g de haricots verts",
+            "200g de carottes",
+            "Citron",
+            "Herbes de Provence",
+            "Sel et poivre"
+          ],
+          "preparationTime": "25 minutes",
+          "steps": [
+            "Préchauffer le four à 180°C",
+            "Assaisonner le poisson",
+            "Cuire les légumes à la vapeur",
+            "Cuire le poisson au four 15 minutes"
+          ]
+        }
+      },
+      "friday": {
+        "breakfast": {
+          "name": "Yaourt grec aux fruits",
+          "ingredients": [
+            "200g de yaourt grec",
+            "1 banane",
+            "100g de myrtilles",
+            "1 c. à soupe de miel",
+            "1 c. à soupe de noix"
+          ],
+          "preparationTime": "5 minutes",
+          "steps": ["Couper les fruits", "Mélanger avec le yaourt", "Ajouter le miel et les noix"]
+        },
+        "lunch": {
+          "name": "Quiche aux légumes",
+          "ingredients": [
+            "1 pâte brisée",
+            "3 œufs",
+            "200ml de crème légère",
+            "100g de brocoli",
+            "100g de champignons",
+            "50g de fromage râpé",
+            "Sel et poivre"
+          ],
+          "preparationTime": "45 minutes",
+          "steps": [
+            "Préchauffer le four à 180°C",
+            "Préparer les légumes",
+            "Mélanger les œufs et la crème",
+            "Enfourner 35 minutes"
+          ]
+        },
+        "dinner": {
+          "name": "Buddha bowl végétarien",
+          "ingredients": [
+            "100g de quinoa",
+            "100g de pois chiches",
+            "1 avocat",
+            "1 carotte",
+            "1/2 concombre",
+            "2 c. à soupe de tahini",
+            "Jus de citron"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire le quinoa",
+            "Préparer les légumes",
+            "Assembler tous les ingrédients",
+            "Arroser de sauce tahini"
+          ]
+        }
+      },
+      "saturday": {
+        "breakfast": {
+          "name": "Crêpes protéinées",
+          "ingredients": [
+            "2 œufs",
+            "1 banane",
+            "30g de farine d'avoine",
+            "1 c. à soupe de miel",
+            "1 pincée de cannelle"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": ["Mixer tous les ingrédients", "Faire cuire les crêpes", "Servir avec du miel"]
+        },
+        "lunch": {
+          "name": "Salade César au poulet",
+          "ingredients": [
+            "100g de poulet grillé",
+            "Feuilles de romaine",
+            "50g de parmesan",
+            "Croûtons",
+            "Sauce César légère",
+            "Sel et poivre"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": ["Couper le poulet", "Mélanger tous les ingrédients", "Arroser de sauce"]
+        },
+        "dinner": {
+          "name": "Ratatouille provençale",
+          "ingredients": [
+            "1 aubergine",
+            "1 courgette",
+            "1 poivron",
+            "2 tomates",
+            "1 oignon",
+            "Herbes de Provence",
+            "Huile d'olive"
+          ],
+          "preparationTime": "40 minutes",
+          "steps": [
+            "Couper les légumes",
+            "Faire revenir l'oignon",
+            "Ajouter les légumes",
+            "Laisser mijoter 30 minutes"
+          ]
+        }
+      },
+      "sunday": {
+        "breakfast": {
+          "name": "Smoothie vert",
+          "ingredients": [
+            "1 banane",
+            "1 poignée d'épinards",
+            "1 kiwi",
+            "1 c. à soupe de graines de chia",
+            "200ml d'eau"
+          ],
+          "preparationTime": "10 minutes",
+          "steps": ["Mixer tous les ingrédients", "Servir frais"]
+        },
+        "lunch": {
+          "name": "Poke bowl saumon",
+          "ingredients": [
+            "150g de saumon cru",
+            "100g de riz",
+            "1/2 avocat",
+            "1 carotte",
+            "1/2 concombre",
+            "Sauce soja",
+            "Graines de sésame"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire le riz",
+            "Couper le saumon et les légumes",
+            "Assembler tous les ingrédients",
+            "Arroser de sauce soja"
+          ]
+        },
+        "dinner": {
+          "name": "Soupe de légumes",
+          "ingredients": [
+            "2 carottes",
+            "2 courgettes",
+            "1 oignon",
+            "1 gousse d'ail",
+            "1 litre de bouillon de légumes",
+            "Herbes de Provence",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Couper les légumes",
+            "Faire revenir l'oignon et l'ail",
+            "Ajouter les légumes et le bouillon",
+            "Laisser cuire 20 minutes"
+          ]
+        }
       }
     }
   },
@@ -171,6 +434,324 @@
             "Ajouter les lentilles et les épices",
             "Ajouter les tomates et le lait de coco",
             "Laisser mijoter 20 minutes"
+          ]
+        }
+      },
+      "tuesday": {
+        "breakfast": {
+          "name": "Omelette aux épinards",
+          "ingredients": [
+            "2 œufs",
+            "100g d'épinards",
+            "50g de feta",
+            "1 c. à soupe d'huile d'olive",
+            "Sel et poivre"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Faire revenir les épinards",
+            "Battre les œufs",
+            "Ajouter la feta",
+            "Cuire l'omelette"
+          ]
+        },
+        "lunch": {
+          "name": "Salade de pois chiches",
+          "ingredients": [
+            "200g de pois chiches",
+            "1 poivron",
+            "1 oignon rouge",
+            "Persil",
+            "Jus de citron",
+            "Huile d'olive",
+            "Cumin"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Rincer les pois chiches",
+            "Couper les légumes",
+            "Mélanger tous les ingrédients",
+            "Assaisonner"
+          ]
+        },
+        "dinner": {
+          "name": "Poulet au curry",
+          "ingredients": [
+            "2 blancs de poulet",
+            "1 oignon",
+            "2 gousses d'ail",
+            "Lait de coco",
+            "Curry en poudre",
+            "Coriandre",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Faire revenir l'oignon et l'ail",
+            "Ajouter le poulet et les épices",
+            "Verser le lait de coco",
+            "Laisser mijoter 20 minutes"
+          ]
+        }
+      },
+      "wednesday": {
+        "breakfast": {
+          "name": "Muesli maison",
+          "ingredients": [
+            "50g de flocons d'avoine",
+            "1 pomme",
+            "1 c. à soupe de raisins secs",
+            "1 c. à soupe de noix",
+            "200ml de lait végétal"
+          ],
+          "preparationTime": "5 minutes",
+          "steps": ["Couper la pomme", "Mélanger tous les ingrédients", "Servir avec le lait"]
+        },
+        "lunch": {
+          "name": "Tartare de saumon",
+          "ingredients": [
+            "200g de saumon frais",
+            "1 avocat",
+            "1 échalote",
+            "Coriandre",
+            "Jus de citron",
+            "Huile d'olive",
+            "Sel et poivre"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Couper le saumon en dés",
+            "Préparer l'avocat",
+            "Mélanger tous les ingrédients",
+            "Assaisonner"
+          ]
+        },
+        "dinner": {
+          "name": "Gratin de légumes",
+          "ingredients": [
+            "200g de brocoli",
+            "200g de chou-fleur",
+            "100g de fromage râpé",
+            "200ml de crème légère",
+            "Noix de muscade",
+            "Sel et poivre"
+          ],
+          "preparationTime": "40 minutes",
+          "steps": [
+            "Préchauffer le four à 180°C",
+            "Cuire les légumes à la vapeur",
+            "Préparer la sauce",
+            "Enfourner 20 minutes"
+          ]
+        }
+      },
+      "thursday": {
+        "breakfast": {
+          "name": "Pain perdu healthy",
+          "ingredients": [
+            "2 tranches de pain complet",
+            "1 œuf",
+            "100ml de lait d'amande",
+            "1 c. à soupe de miel",
+            "1 pincée de cannelle"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Battre l'œuf et le lait",
+            "Tremper le pain",
+            "Faire cuire à la poêle",
+            "Servir avec du miel"
+          ]
+        },
+        "lunch": {
+          "name": "Salade de quinoa",
+          "ingredients": [
+            "100g de quinoa",
+            "100g de poulet",
+            "1/2 concombre",
+            "1 tomate",
+            "Menthe",
+            "Jus de citron",
+            "Huile d'olive"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire le quinoa",
+            "Couper les légumes",
+            "Mélanger tous les ingrédients",
+            "Assaisonner"
+          ]
+        },
+        "dinner": {
+          "name": "Soupe de potiron",
+          "ingredients": [
+            "500g de potiron",
+            "1 oignon",
+            "1 gousse d'ail",
+            "1 litre de bouillon",
+            "Crème légère",
+            "Noix de muscade",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Couper le potiron",
+            "Faire revenir l'oignon et l'ail",
+            "Ajouter le bouillon",
+            "Mixer et ajouter la crème"
+          ]
+        }
+      },
+      "friday": {
+        "breakfast": {
+          "name": "Smoothie bowl tropical",
+          "ingredients": [
+            "1 banane",
+            "1 mangue",
+            "100g d'ananas",
+            "1 c. à soupe de noix de coco",
+            "1 c. à soupe de graines de chia"
+          ],
+          "preparationTime": "10 minutes",
+          "steps": ["Mixer les fruits", "Verser dans un bol", "Ajouter les toppings"]
+        },
+        "lunch": {
+          "name": "Wrap végétarien",
+          "ingredients": [
+            "1 tortilla",
+            "100g de houmous",
+            "1/2 avocat",
+            "1 carotte",
+            "Feuilles de salade",
+            "Sauce au yaourt"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": ["Étaler le houmous", "Ajouter les légumes", "Rouler le wrap", "Couper en deux"]
+        },
+        "dinner": {
+          "name": "Poisson en papillote",
+          "ingredients": [
+            "2 filets de cabillaud",
+            "1 citron",
+            "Herbes de Provence",
+            "200g de légumes variés",
+            "Huile d'olive",
+            "Sel et poivre"
+          ],
+          "preparationTime": "25 minutes",
+          "steps": [
+            "Préchauffer le four à 180°C",
+            "Préparer les papillotes",
+            "Enfourner 20 minutes"
+          ]
+        }
+      },
+      "saturday": {
+        "breakfast": {
+          "name": "Pancakes à la banane",
+          "ingredients": [
+            "1 banane",
+            "2 œufs",
+            "30g de farine d'avoine",
+            "1 c. à soupe de miel",
+            "1 pincée de cannelle"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Écraser la banane",
+            "Mélanger avec les œufs",
+            "Faire cuire les pancakes",
+            "Servir avec du miel"
+          ]
+        },
+        "lunch": {
+          "name": "Salade niçoise",
+          "ingredients": [
+            "100g de thon",
+            "2 œufs",
+            "100g de haricots verts",
+            "1 tomate",
+            "Olives noires",
+            "Anchois",
+            "Vinaigrette"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire les œufs et les haricots",
+            "Couper les légumes",
+            "Assembler la salade",
+            "Arroser de vinaigrette"
+          ]
+        },
+        "dinner": {
+          "name": "Tajine de poulet",
+          "ingredients": [
+            "2 blancs de poulet",
+            "2 carottes",
+            "1 courgette",
+            "1 oignon",
+            "Abricots secs",
+            "Raisins secs",
+            "Épices à tajine"
+          ],
+          "preparationTime": "45 minutes",
+          "steps": [
+            "Faire revenir l'oignon",
+            "Ajouter le poulet et les légumes",
+            "Ajouter les fruits secs",
+            "Laisser mijoter 30 minutes"
+          ]
+        }
+      },
+      "sunday": {
+        "breakfast": {
+          "name": "Granola maison",
+          "ingredients": [
+            "50g de flocons d'avoine",
+            "1 c. à soupe de miel",
+            "1 c. à soupe d'huile de coco",
+            "1 c. à soupe de noix",
+            "200ml de yaourt grec"
+          ],
+          "preparationTime": "5 minutes",
+          "steps": ["Mélanger le granola", "Servir avec le yaourt", "Ajouter des fruits frais"]
+        },
+        "lunch": {
+          "name": "Risotto aux légumes",
+          "ingredients": [
+            "150g de riz arborio",
+            "200g de légumes variés",
+            "1 oignon",
+            "50ml de vin blanc",
+            "1 litre de bouillon",
+            "Parmesan",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Faire revenir l'oignon",
+            "Ajouter le riz et le vin",
+            "Ajouter progressivement le bouillon",
+            "Terminer avec le parmesan"
+          ]
+        },
+        "dinner": {
+          "name": "Soupe miso",
+          "ingredients": [
+            "1 litre d'eau",
+            "2 c. à soupe de pâte miso",
+            "100g de tofu",
+            "1 oignon vert",
+            "Algues wakame",
+            "Champignons shiitake",
+            "Sauce soja"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Faire chauffer l'eau",
+            "Dissoudre la pâte miso",
+            "Ajouter les ingrédients",
+            "Laisser mijoter 10 minutes"
           ]
         }
       }
