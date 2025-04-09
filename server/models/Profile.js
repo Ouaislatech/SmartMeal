@@ -4,19 +4,19 @@ class Profile {
   static async create(profileData, callback) {
     const {
       user_id,
-      prenom = null,
-      objectif_sante = null,
-      regime_particulier = null,
-      autres_regimes = null,
-      sexe = null,
-      age = null,
-      taille = null,
-      poids = null,
-      budget_alimentaire = null,
+      prenom = '',
+      objectif_sante = '',
+      regime_particulier = '',
+      autres_regimes = '',
+      sexe = '',
+      age = 0,
+      taille = 0,
+      poids = 0,
+      budget_alimentaire = 0,
       freemium = true,
       completed = false,
-      allergies = null,
-      preferences = null,
+      allergies = [],
+      preferences = [],
     } = profileData;
 
     try {

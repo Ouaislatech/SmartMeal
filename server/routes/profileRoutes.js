@@ -1,19 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const profileController = require('../controllers/profileController');
+const { authMiddleware } = require('../middleware/auth');
 
-// Route pour récupérer le profil d'un utilisateur
-router.get('/user/:userId', profileController.getProfile);
+// Appliquer le middleware d'authentification à toutes les routes
+router.use(authMiddleware);
 
-// Route pour mettre à jour un profil
-router.put('/:id', profileController.updateProfile);
+// Créer un nouveau profil
+router.post('/', profileController.createProfile);
 
-// Routes pour les étapes d'onboarding
-router.put('/:id/objectifs-sante', profileController.updateObjectifsSante);
-router.put('/:id/regime-particulier', profileController.updateRegimeParticulier);
-router.put('/:id/donnees-physiques', profileController.updateDonneesPhysiques);
-router.put('/:id/budget', profileController.updateBudget);
-router.put('/:id/freemium', profileController.updateFreemium);
-router.put('/:id/photo', profileController.updatePhoto);
+// Récupérer le profil de l'utilisateur connecté
+router.get('/', profileController.getProfile);
+
+// Mettre à jour le profil
+router.put('/', profileController.updateProfile);
+
+// Mettre à jour la photo de profil
+router.put('/photo', profileController.updatePhoto);
+
+// Routes spécifiques pour l'onboarding
+router.put('/objectifs-sante', profileController.updateObjectifsSante);
+router.put('/regime-particulier', profileController.updateRegimeParticulier);
+router.put('/donnees-physiques', profileController.updateDonneesPhysiques);
+router.put('/budget', profileController.updateBudget);
+router.put('/freemium', profileController.updateFreemium);
 
 module.exports = router;
