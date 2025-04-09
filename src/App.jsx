@@ -4,6 +4,7 @@ import Register from './components/auth/Register';
 import OnboardingContainer from './components/onboarding/OnboardingContainer';
 import Dashboard from './pages/Dashboard';
 import Programmes from './pages/Programmes';
+import MealProgramPage from './pages/MealProgramPage';
 import ProgrammeCards from './pages/ProgrammeCards';
 import Home from './pages/Home';
 import ProfileReview from './pages/ProfileReview';
@@ -37,6 +38,15 @@ function App() {
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/meal-program"
+          element={
+            // <ProtectedRoute>
+            <MealProgramPage />
+            // </ProtectedRoute>
           }
         />
 

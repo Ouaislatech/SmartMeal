@@ -79,9 +79,9 @@ function App() {
           <Route
             path="/meal-program"
             element={
-              <ProtectedRoute>
-                <MealProgramPage />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <MealProgramPage />
+              // </ProtectedRoute>
             }
           />
 

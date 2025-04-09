@@ -25,7 +25,7 @@ function BackButton() {
   );
 }
 
-export default function ProgrammeCard({ title, description, image, onClick }) {
+export default function ProgrammeCard({ title, description, image, onClick, weekNumber }) {
   const navigate = useNavigate();
   const imageSrc = image || defaultImages[title] || '/images/programmes/default.jpg';
 
@@ -39,7 +39,10 @@ export default function ProgrammeCard({ title, description, image, onClick }) {
             <h2 className="programme-title">{title}</h2>
             <p className="programme-description">{description}</p>
           </div>
-          <button onClick={onClick || (() => navigate('/programme'))} className="programme-button">
+          <button
+            onClick={onClick || (() => navigate(`/meal-program?weekNumber=${weekNumber}`))}
+            className="programme-button"
+          >
             Découvrir les repas
           </button>
         </div>

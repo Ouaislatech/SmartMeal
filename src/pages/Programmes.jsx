@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProgrammeCard from '../components/ProgrammeCard';
+import ProgrammeCard from '../components/ProgrammeCards';
 import '../styles/ProgrammeCard.css';
 
 const Programmes = () => {

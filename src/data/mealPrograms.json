@@ -1,0 +1,179 @@
+{
+  "week1": {
+    "days": {
+      "monday": {
+        "breakfast": {
+          "name": "Omelette aux légumes",
+          "ingredients": [
+            "2 œufs",
+            "1/2 poivron",
+            "1/2 oignon",
+            "50g de champignons",
+            "1 c. à soupe d'huile d'olive",
+            "Sel et poivre"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Couper les légumes en petits morceaux",
+            "Faire revenir les légumes dans l'huile d'olive",
+            "Battre les œufs et les verser sur les légumes",
+            "Cuire à feu moyen jusqu'à ce que l'omelette soit bien prise"
+          ]
+        },
+        "lunch": {
+          "name": "Salade de quinoa aux légumes",
+          "ingredients": [
+            "100g de quinoa",
+            "1 courgette",
+            "1 carotte",
+            "1/2 concombre",
+            "1 tomate",
+            "2 c. à soupe d'huile d'olive",
+            "Jus de citron",
+            "Sel et poivre"
+          ],
+          "preparationTime": "25 minutes",
+          "steps": [
+            "Cuire le quinoa selon les instructions",
+            "Couper les légumes en dés",
+            "Mélanger tous les ingrédients",
+            "Assaisonner avec l'huile d'olive, le jus de citron, le sel et le poivre"
+          ]
+        },
+        "dinner": {
+          "name": "Filet de saumon aux légumes vapeur",
+          "ingredients": [
+            "1 filet de saumon",
+            "200g de brocoli",
+            "200g de carottes",
+            "1 citron",
+            "Herbes de Provence",
+            "Sel et poivre"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Préchauffer le four à 180°C",
+            "Assaisonner le saumon avec les herbes, le sel et le poivre",
+            "Cuire les légumes à la vapeur",
+            "Cuire le saumon au four pendant 15 minutes"
+          ]
+        }
+      },
+      "tuesday": {
+        "breakfast": {
+          "name": "Smoothie bowl",
+          "ingredients": [
+            "1 banane",
+            "100g de myrtilles",
+            "1 c. à soupe de graines de chia",
+            "1 c. à soupe de miel",
+            "50ml de lait d'amande"
+          ],
+          "preparationTime": "10 minutes",
+          "steps": [
+            "Mixer tous les ingrédients",
+            "Verser dans un bol",
+            "Ajouter des toppings au choix"
+          ]
+        },
+        "lunch": {
+          "name": "Wrap au poulet",
+          "ingredients": [
+            "1 tortilla",
+            "100g de poulet grillé",
+            "1/2 avocat",
+            "1 tomate",
+            "Feuilles de salade",
+            "Sauce au yaourt"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Étaler la sauce sur la tortilla",
+            "Ajouter tous les ingrédients",
+            "Rouler le wrap",
+            "Couper en deux"
+          ]
+        },
+        "dinner": {
+          "name": "Risotto aux champignons",
+          "ingredients": [
+            "150g de riz arborio",
+            "200g de champignons",
+            "1 oignon",
+            "50ml de vin blanc",
+            "1 litre de bouillon de légumes",
+            "Parmesan",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Faire revenir l'oignon et les champignons",
+            "Ajouter le riz et le vin blanc",
+            "Ajouter progressivement le bouillon",
+            "Terminer avec le parmesan"
+          ]
+        }
+      }
+    }
+  },
+  "week2": {
+    "days": {
+      "monday": {
+        "breakfast": {
+          "name": "Pancakes protéinés",
+          "ingredients": [
+            "2 œufs",
+            "1 banane",
+            "30g de flocons d'avoine",
+            "1 c. à soupe de miel",
+            "1 pincée de cannelle"
+          ],
+          "preparationTime": "15 minutes",
+          "steps": [
+            "Mixer tous les ingrédients",
+            "Faire cuire les pancakes à la poêle",
+            "Servir avec du miel"
+          ]
+        },
+        "lunch": {
+          "name": "Buddha bowl",
+          "ingredients": [
+            "100g de quinoa",
+            "1/2 avocat",
+            "1 carotte",
+            "1/2 concombre",
+            "50g de pois chiches",
+            "2 c. à soupe de tahini",
+            "Jus de citron"
+          ],
+          "preparationTime": "20 minutes",
+          "steps": [
+            "Cuire le quinoa",
+            "Préparer les légumes",
+            "Assembler tous les ingrédients",
+            "Arroser de sauce tahini"
+          ]
+        },
+        "dinner": {
+          "name": "Curry de lentilles",
+          "ingredients": [
+            "200g de lentilles",
+            "1 oignon",
+            "2 gousses d'ail",
+            "1 boîte de tomates concassées",
+            "Lait de coco",
+            "Curry en poudre",
+            "Sel et poivre"
+          ],
+          "preparationTime": "30 minutes",
+          "steps": [
+            "Faire revenir l'oignon et l'ail",
+            "Ajouter les lentilles et les épices",
+            "Ajouter les tomates et le lait de coco",
+            "Laisser mijoter 20 minutes"
+          ]
+        }
+      }
+    }
+  }
+}
