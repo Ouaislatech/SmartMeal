@@ -126,7 +126,7 @@ function ProfileReview() {
     try {
       // Marquer le profil comme complet
       await ProfileService.updateFreemium(profile.id, profile.freemium === 1);
-      navigate('/programmes');
+      navigate('/home');
     } catch (error) {
       setError(error.message || 'Erreur lors de la finalisation du profil');
     } finally {
@@ -152,20 +152,49 @@ function ProfileReview() {
       {error && <div className="profile-review-error">{error}</div>}
 
       <div className="profile-review-content">
-        <section className="profile-photo-section">
-          <ProfilePhoto
-            profileId={profile?.id}
-            initialPhotoUrl={profile?.photo_profil}
-            onPhotoUpdate={handlePhotoUpdate}
-          />
-          <div className="profile-name-section">
-            <div className="section-header">
-              <h2>Prénom</h2>
-              {!editMode.prenom ? (
+        <div className="profile-top">
+          <div className="profile-picture">
+            <ProfilePhoto
+              profileId={profile?.id}
+              initialPhotoUrl={profile?.photo_profil}
+              onPhotoUpdate={handlePhotoUpdate}
+            />
+            <div className="picture-info">
+              <p>Format JPG, GIF ou PNG. Taille max. 800K</p>
+            </div>
+          </div>
+          <div className="profile-buttons">
+            <button
+              className="upload-button"
+              onClick={() => document.getElementById('photo-upload').click()}
+            >
+              Changer la photo
+            </button>
+            <button className="delete-button" onClick={() => handlePhotoUpdate(null)}>
+              Supprimer
+            </button>
+          </div>
+        </div>
+
+        <div className="name-fields">
+          <div className="input-group">
+            <label>Prénom</label>
+            {!editMode.prenom ? (
+              <div className="input-value">
+                <span>{user?.prenom || 'Utilisateur'}</span>
                 <button className="edit-button" onClick={() => handleEdit('prenom')}>
                   Modifier
                 </button>
-              ) : (
+              </div>
+            ) : (
+              <div className="input-edit">
+                <input
+                  type="text"
+                  name="prenom"
+                  value={formData.prenom || ''}
+                  onChange={handleChange}
+                  placeholder="Votre prénom"
+                />
                 <div className="edit-actions">
                   <button className="cancel-button" onClick={() => handleCancel('prenom')}>
                     Annuler
@@ -178,30 +207,16 @@ function ProfileReview() {
                     {saving ? 'Enregistrement...' : 'Enregistrer'}
                   </button>
                 </div>
-              )}
-            </div>
-
-            {!editMode.prenom ? (
-              <div className="section-content">
-                <h2>{user?.prenom || 'Utilisateur'}</h2>
-              </div>
-            ) : (
-              <div className="section-edit">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="prenom"
-                    value={formData.prenom || ''}
-                    onChange={handleChange}
-                    placeholder="Votre prénom"
-                    className="prenom-input"
-                  />
-                </div>
               </div>
             )}
           </div>
-          <p className="user-email">{user?.email}</p>
-        </section>
+          <div className="input-group">
+            <label>Email</label>
+            <div className="input-value">
+              <span>{user?.email}</span>
+            </div>
+          </div>
+        </div>
 
         <section className="profile-section">
           <div className="section-header">
@@ -456,11 +471,8 @@ function ProfileReview() {
       </div>
 
       <div className="profile-review-actions">
-        <button className="back-button" onClick={() => navigate('/onboarding')}>
-          Retour à l'onboarding
-        </button>
         <button className="complete-button" onClick={handleComplete} disabled={saving}>
-          {saving ? 'Finalisation...' : 'Finaliser mon profil'}
+          {saving ? 'Validation...' : 'Valider'}
         </button>
       </div>
     </div>

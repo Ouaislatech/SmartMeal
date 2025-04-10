@@ -8,72 +8,59 @@ function Home() {
 
   return (
     <div className="home-container">
-      <header className="header">
-        <div className="flex justify-between items-center w-full">
-          <div>
-            <h1>SmartMeal</h1>
-            <p>Votre assistant de nutrition personnalisé</p>
+      {isAuthenticated && (
+        <div className="header">
+          <Link to="/profile-review">
+            <button className="profile-button">Profil</button>
+          </Link>
+          <LogoutButton />
+        </div>
+      )}
+
+      <div className="content-wrapper">
+        <div className="left-column">
+          <img
+            src="https://images.pexels.com/photos/18968671/pexels-photo-18968671/free-photo-of-plat-de-poulet-chinois.jpeg"
+            alt="Repas sain et équilibré"
+            className="hero-image"
+          />
+        </div>
+
+        <div className="right-column">
+          <div className="text-content">
+            <h1>Smart Meal</h1>
+            <p className="slogan">Prenez le contrôle de votre alimentation</p>
           </div>
-          {isAuthenticated && <LogoutButton />}
-        </div>
 
-        <div className="auth-buttons">
-          {isAuthenticated ? (
-            <>
-              <Link to="/programmes" className="auth-button programmes-button mb-4">
-                Voir mes programmes
+          <div className="cta-section">
+            {isAuthenticated ? (
+              <Link to="/programmes">
+                <button className="button-programs">Voir mes programmes</button>
               </Link>
-              <Link to="/dashboard" className="auth-button dashboard-button">
-                Accéder à mon tableau de bord
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="auth-button login-button">
-                Se connecter
-              </Link>
-              <Link to="/register" className="auth-button register-button">
-                S'inscrire
-              </Link>
-            </>
-          )}
-        </div>
-      </header>
-
-      <main className="main-content">
-        <section className="hero-section">
-          <div className="hero-content">
-            <h2>Prenez le contrôle de votre alimentation</h2>
-            <p className="hero-description">
-              SmartMeal vous aide à planifier vos repas en fonction de vos objectifs, préférences et
-              contraintes alimentaires.
-            </p>
-
-            <div className="hero-features">
-              <div className="feature">
-                <h3>Plans personnalisés</h3>
-                <p>Des repas adaptés à vos besoins nutritionnels spécifiques</p>
+            ) : (
+              <div className="auth-buttons">
+                <Link to="/register">
+                  <button className="primary-button">S'inscrire</button>
+                </Link>
+                <Link to="/login">
+                  <button className="secondary-button">Connexion</button>
+                </Link>
               </div>
-
-              <div className="feature">
-                <h3>Organisation facile</h3>
-                <p>Générez automatiquement votre liste de courses hebdomadaire</p>
-              </div>
-
-              <div className="feature">
-                <h3>100% local</h3>
-                <p>Toutes vos données sont stockées sur votre appareil uniquement</p>
-              </div>
-            </div>
-
-            {!isAuthenticated && (
-              <Link to="/register" className="cta-button">
-                Créer un compte gratuit
-              </Link>
             )}
           </div>
-        </section>
-      </main>
+
+          <div className="info-cards">
+            <div className="info-card">
+              <h3>Plans personnalisés</h3>
+              <p>Des repas adaptés à vos besoins nutritionnels spécifiques</p>
+            </div>
+            <div className="info-card">
+              <h3>Organisation facile</h3>
+              <p>Générez automatiquement votre liste de courses hebdomadaire et votre budget</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} SmartMeal - Application développée localement</p>

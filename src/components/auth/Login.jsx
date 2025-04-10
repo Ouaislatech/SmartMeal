@@ -29,13 +29,7 @@ function Login() {
 
     try {
       const result = await AuthService.login(formData.email, formData.password);
-
-      // Vérifier si l'utilisateur a déjà terminé l'onboarding
-      if (result.data.profile && result.data.profile.completed) {
-        navigate('/dashboard');
-      } else {
-        navigate('/onboarding');
-      }
+      navigate('/home');
     } catch (error) {
       setError(error.message);
     } finally {
