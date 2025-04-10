@@ -151,7 +151,7 @@ export const AuthService = {
 
       localStorage.removeItem('user');
       localStorage.removeItem('profile');
-      window.location.href = '/login';
+      // window.location.href = '/login';
     } catch (error) {
       console.error('Erreur lors de la déconnexion:', error);
     }

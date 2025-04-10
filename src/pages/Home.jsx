@@ -2,9 +2,19 @@ import { Link } from 'react-router-dom';
 import { AuthService } from '../services/authService';
 import { LogoutButton } from '../components/LogoutButton';
 import './Home.css';
+import { useState, useEffect } from 'react';
 
 function Home() {
-  const isAuthenticated = AuthService.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const authStatus = await AuthService.isAuthenticated();
+      setIsAuthenticated(authStatus);
+    };
+
+    checkAuth();
+  }, []);
 
   return (
     <div className="home-container">

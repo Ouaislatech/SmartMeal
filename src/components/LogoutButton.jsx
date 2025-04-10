@@ -5,6 +5,7 @@ export function LogoutButton() {
   const handleLogout = async () => {
     try {
       await AuthService.logout();
+      window.location.href = '/';
     } catch (error) {
       console.error('Erreur lors de la déconnexion:', error);
     }
